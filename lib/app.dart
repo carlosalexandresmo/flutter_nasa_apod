@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nasa_apod/src/core/common/constants/constants.dart';
 import 'package:flutter_nasa_apod/src/core/routes/app_router.dart';
+import 'package:flutter_nasa_apod/src/shared/app_binding.dart';
 import 'package:get/get.dart';
 
 class FlutterNasaApod extends StatelessWidget {
@@ -29,7 +30,7 @@ class FlutterNasaApod extends StatelessWidget {
       routerDelegate: AppRouter.router.routerDelegate,
       routeInformationProvider: AppRouter.router.routeInformationProvider,
       // navigatorObservers: [defaultLifecycleObserver],
-      // initialBinding: AppBinding(),
+      initialBinding: AppBinding(),
     );
   }
 }
