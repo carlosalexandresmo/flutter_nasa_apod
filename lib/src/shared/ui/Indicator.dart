@@ -8,11 +8,13 @@ class Indicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: scale,
-      child: CircularProgressIndicator(
-        strokeWidth: 4,
-        valueColor: AlwaysStoppedAnimation<Color>(color),
+    return Center(
+      child: Transform.scale(
+        scale: scale,
+        child: CircularProgressIndicator(
+          strokeWidth: 4,
+          valueColor: AlwaysStoppedAnimation<Color>(color),
+        ),
       ),
     );
   }
