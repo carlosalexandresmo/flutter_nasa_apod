@@ -20,7 +20,7 @@ class ApodController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    getData();
+    getApod();
   }
 
   @override
@@ -31,20 +31,11 @@ class ApodController extends GetxController with StateMixin {
 
   void setFavorite() {}
 
-  Future<void> getData() async {
-    change(null, status: RxStatus.loading());
-    Future.wait([
-      _getApod(),
-    ])
-        .then((value) => change(null, status: RxStatus.success()))
-        .catchError((err) => change(err, status: RxStatus.error()));
-  }
-
-  Future<void> _getApod() async {
+  Future<void> getApod({DateTime? date}) async {
     change(null, status: RxStatus.loading());
 
     try {
-      var result = await _repository.getApod();
+      var result = await _repository.getApod(date: date);
       result.fold(
         (l) => throw l,
         (r) {
@@ -55,26 +46,5 @@ class ApodController extends GetxController with StateMixin {
     } catch (err) {
       change(err, status: RxStatus.error());
     }
-
-    // final result = await _repository.getApod();
-    // (l) {
-    //   change(l, status: RxStatus.error());
-    // };
-    // (r) {
-    //   apod = r;
-    //   change(null, status: RxStatus.success());
-    // };
-
-    // final response = await _repository.;
-
-    // await RequestUtils.load(action: () async {
-    //   final response = await _repository.orders();
-    //   _orders.assignAll(response);
-    // }, onError: (err) {
-    //   change(err, status: RxStatus.error());
-    //   AppSnackBar.error('Erro:', err.message!);
-    // }, onFinally: () {
-    //   change(null, status: RxStatus.success());
-    // });
   }
 }

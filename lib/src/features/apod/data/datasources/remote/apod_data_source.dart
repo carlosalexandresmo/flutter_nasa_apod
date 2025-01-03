@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_nasa_apod/src/core/common/constants/constants.dart';
 import 'package:flutter_nasa_apod/src/features/apod/domain/entities/apod.model.dart';
+import 'package:intl/intl.dart';
 
 abstract class ApodDataSource {
   Future<Apod> getApod(DateTime? date);
@@ -13,12 +14,14 @@ class ApodRemoteDataSourceImpl implements ApodDataSource {
 
   @override
   Future<Apod> getApod(DateTime? date) async {
+    var data = DateFormat('yyyy-MM-dd').format(date ?? DateTime.now());
+
     try {
       final response = await dio.get(
         kBaseUrl,
         queryParameters: {
           'api_key': kApiKey,
-          // 'date': date.toIso8601String().split('T').first,
+          'date': data,
         },
       );
 
@@ -33,7 +36,7 @@ class ApodRemoteDataSourceImpl implements ApodDataSource {
       //   error: e,
       //   stackTrace: s,
       // );
-      throw e;
+      rethrow;
       // throw ServerFailure('Erro ao conectar à API: ${e.response?.statusCode}');
     }
   }

@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 part 'apod.model.g.dart';
 
@@ -6,7 +7,7 @@ part 'apod.model.g.dart';
 
 class Apod {
   String? copyright;
-  DateTime? date;
+  String? date;
   String? explanation;
   String? hdurl;
   String? mediaType;
@@ -29,7 +30,7 @@ class Apod {
 
   Apod.fromJson(Map<String, dynamic> json) {
     copyright = json['copyright'];
-    date = json['id_order'];
+    date = json['date'];
     explanation = json['explanation'];
     hdurl = json['hdurl'];
     mediaType = json['media_type'];
@@ -50,4 +51,7 @@ class Apod {
     data['url'] = url;
     return data;
   }
+  
+  DateTime get dateTime => DateFormat('yyyy-MM-dd').parse(date!);
+  String get formatDate => DateFormat("dd/MM/yyyy").format(dateTime);
 }
