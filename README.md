@@ -1,113 +1,85 @@
 # Flutter Nasa APOD
 
-Este é um aplicativo Flutter que exibe a "Imagem Astronômica do Dia" (APOD) fornecida pela NASA. Ele utiliza a arquitetura **Clean Architecture** com separação de camadas (Domain, Data e Presentation), gerenciamento de estado com **Bloc**, e implementação de testes utilizando **Mockito** e **bloc_test**.
+Projeto Flutter Nasa APOD desenvolvido utilizando Flutter. Neste arquivo README, você encontrará um guia passo a passo para abrir o projeto em seu ambiente local.
 
-## Funcionalidades Principais
+## Pré-requisitos
 
-- 🖼️ Exibição da imagem ou vídeo do dia com informações relevantes como título, descrição e data.
-- 📅 Seleção de data específica para buscar a APOD de um dia anterior.
-- 🎥 Suporte a mídias dinâmicas (imagem ou player de vídeo).
-- ⭐ Sistema de favoritos, permitindo salvar APODs localmente.
-- 📂 Tela separada para visualização dos favoritos.
-- 🎨 Interface responsiva com suporte a temas claro e escuro.
-- ⚡ Cache de imagens para otimização de desempenho.
-
----
-
-## 🛠️ Arquitetura
-
-O projeto segue a **Clean Architecture**, com as seguintes camadas:
-
-### **Domain**
-- Contém as **entidades**, **casos de uso** e **contratos dos repositórios**.
-- Exemplo:
-  - Entidade: `Apod` (representa os dados da APOD).
-  - Caso de Uso: `GetApodByDate`.
-
-### **Data**
-- Contém as implementações dos **repositórios** e a lógica para acessar a API ou o armazenamento local.
-- Utiliza **Dio** para requisições HTTP e **SharedPreferences** para persistência local.
-
-### **Presentation**
-- Contém os **Blocs** para gerenciamento de estado e as **interfaces de usuário (UI)**.
-- Implementado com o pacote **flutter_bloc** para separação entre lógica de negócios e apresentação.
-
----
-
-## 🔌 Gerenciamento de Dependências
-
-O projeto utiliza **GetIt** para injeção de dependência, permitindo fácil configuração e escalabilidade.
-
----
-
-## 📦 Tecnologias e Pacotes Utilizados
-
-- **Dio**: Requisições HTTP.
-- **flutter_bloc**: Gerenciamento de estado.
-- **cached_network_image**: Cache de imagens para otimização.
-- **youtube_player_flutter**: Player para vídeos incorporados.
-- **SharedPreferences**: Armazenamento local de dados.
-- **bloc_test**: Testes de blocos.
-- **Mockito**: Mocking de dependências.
-- **build_runner**: Geração de código para testes com Mockito.
-
----
+- ✅ Dart 3.5.3 ou superior
+- ✅ Flutter 3.24.3  ou superior
+- ✅ Xcode 16.1 ou superior
+- ✅ Android Studio 2023.1 ou superior
+- ✅ CocoaPods version 1.15.2 ou superior
 
 ## ▶️ Como Executar o Projeto
 
-### Pré-requisitos
-- 🛠️ Flutter SDK mais recente.
-- 🔑 Chave de API da NASA obtida em [NASA API](https://api.nasa.gov/).
+## Passo 1️⃣: Clonar o repositório
 
-### Passos
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Matheus-hora48/flutter_nasa_apod.git
-   ```
-2. Instale as dependências:
-   ```bash
-   flutter pub get
-   ```
-3. Execute o aplicativo:
-   ```bash
-   flutter run
-   ```
+Para clonar o repositório, clique no botão "Clone" acima ou execute o seguinte comando no terminal:
 
----
-
-## 🗂️ Estrutura do Projeto
-
-```
-lib/
-├── core/                  # Constantes, temas, configurações.
-├── data/                  # Implementações de repositórios, models e serviços.
-├── domain/                # Entidades e casos de uso.
-├── presentation/          # Blocs, telas e widgets.
-└── main.dart              # Ponto de entrada da aplicação.
+```bash
+git clone https://github.com/carlosalexandresmo/flutter_nasa_apod.git 
 ```
 
----
+Isso criará uma cópia local do repositório em seu ambiente.
 
-## Testes
+## Passo 2️⃣: Checagem e atualização dos pacotes
 
-Os testes foram implementados com **bloc_test** e **Mockito**:
+Navegue até o diretório raiz do projeto e execute o seguinte comando para iniciar:
 
-### Configuração dos Testes
-1. Geração de mocks:
-   ```bash
-   flutter pub run build_runner build
-   ```
-2. Execução dos testes:
-   ```bash
-   flutter test
-   ```
+O comando abaixo permite verificar o estado da instalação dele, e se há algum erro:
 
-### Testes Implementados
-- ✅ Testes unitários dos casos de uso e repositórios.
-- ✅ Testes de blocos para verificar os estados emitidos em diferentes cenários.
+```bash
+flutter doctor -v
+```
 
----
+O comando abaixo permite atualizar as dependências relacionadas ao projeto:
 
-## 📜 Licença
+```bash
+flutter pub get
+```
 
-Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+## Passo 3️⃣: Comandos para rodar o projeto
+
+O comando abaixo executa o projeto:
+
+```bash
+flutter run
+```
+
+Para verificar os dispositivos disponíveis:
+
+```bash
+flutter devices
+```
+
+OBS: Caso queira especificar o dispositivo:
+
+```bash
+flutter run -d {id do dispositivo}
+```
+
+Para limpar um build
+
+```bash
+flutter clean
+```
+
+Para excluir o cache
+
+```bash
+flutter pub cache clean
+```
+
+## Passo 4️⃣: Buildar o projeto e versão release
+
+O comando abaixo cria build para Android
+
+```bash
+flutter build appbundle
+```
+
+O comando abaixo cria um build para iOS
+
+```bash
+flutter build ios
+```
