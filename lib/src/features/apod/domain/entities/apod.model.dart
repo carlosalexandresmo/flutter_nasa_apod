@@ -6,14 +6,32 @@ part 'apod.model.g.dart';
 @HiveType(typeId: 0)
 
 class Apod {
+
+  @HiveField(0)
   String? copyright;
+
+  @HiveField(1)
   String? date;
+
+  @HiveField(2)
   String? explanation;
+
+  @HiveField(3)
   String? hdurl;
+  
+  @HiveField(4)
   String? mediaType;
+
+  @HiveField(5)
   String? serviceVersion;
+
+  @HiveField(6)
   String? title;
+
+  @HiveField(7)
   String? url;
+
+  @HiveField(8)
   bool? isFavorite;
 
   Apod({

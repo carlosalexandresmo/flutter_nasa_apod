@@ -41,7 +41,9 @@ class AppRouter {
               pageBuilder: (_, state) {
                 return CustomSlideTransition(
                   child: GetBuilder(
-                    init: FavoritesController(),
+                    init: FavoritesController(ApodRepositoryImpl(
+                        apodDataSource: ApodRemoteDataSourceImpl(Dio()),
+                        favoriteDataSource: FavoriteDataSourceImpl())),
                     dispose: (state) {
                       Get.delete<FavoritesController>();
                     },

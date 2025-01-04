@@ -30,7 +30,7 @@ class ApodRemoteDataSourceImpl implements ApodDataSource {
       } else {
         throw Exception('Error'); // return null; //ServerFailure('Failed to fetch APOD');
       }
-    } on DioException catch (e, s) {
+    } on DioException catch (e, _) {
       // log(
       //   'Erro ao conectar à API: ${e.response?.statusCode}',
       //   error: e,

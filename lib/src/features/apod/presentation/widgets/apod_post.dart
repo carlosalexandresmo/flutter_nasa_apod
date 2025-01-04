@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nasa_apod/src/features/apod/domain/entities/apod.model.dart';
-import 'package:flutter_nasa_apod/src/features/apod/presentation/widgets/favorite_item.dart';
+import 'package:flutter_nasa_apod/src/features/apod/presentation/controllers/apod_controller.dart';
+import 'package:flutter_nasa_apod/src/features/apod/presentation/widgets/favorite_icon.dart';
 import 'package:flutter_nasa_apod/src/features/apod/presentation/widgets/post_image.dart';
 import 'package:flutter_nasa_apod/src/features/apod/presentation/widgets/post_video.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class ApodPost extends StatelessWidget {
-  const ApodPost({super.key, required this.apod});
+  const ApodPost({super.key, required this.apod, this.onPressed});
 
   final Apod apod;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
+    ApodController controller = Get.find();
     return Card(
       child: Column(
         children: [
@@ -37,8 +41,8 @@ class ApodPost extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: FavoriteItem(favorite: apod.isFavorite ?? false),
+                    onPressed: () => onPressed!(),
+                    icon: Obx(() => FavoriteIcon(favorite: controller.apod!.isFavorite!)),
                   )
                 ],
               ),

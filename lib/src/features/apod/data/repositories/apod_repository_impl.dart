@@ -16,9 +16,50 @@ class ApodRepositoryImpl implements ApodRepository {
   @override
   Future<Either<Exception, Apod>> getApod({DateTime? date}) async {
     try {
-      final result = await apodDataSource.getApod(date);
-      // final isFavorite = await favoriteDataSource.isFavoriteApod(result);
+      Apod result = await apodDataSource.getApod(date);
+      bool isFavorite = await favoriteDataSource.checkIfIsFavorite(result);
+      result.isFavorite = isFavorite;
       return Right(result);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<Apod>>> getFavorites() async {
+    try {
+      List<Apod> apods = await favoriteDataSource.getFavorites();
+      return Right(apods);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> isFavorite(Apod apod) async {
+    try {
+      await favoriteDataSource.checkIfIsFavorite(apod);
+      return const Right(false);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Apod>> removeFavorite(Apod apod) async {
+    try {
+      await favoriteDataSource.removeFavorite(apod);
+      return Right(apod);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Apod>> saveFavorite(Apod apod) async {
+    try {
+      await favoriteDataSource.addFavorite(apod);
+      return Right(apod);
     } catch (e) {
       return Left(Exception(e.toString()));
     }

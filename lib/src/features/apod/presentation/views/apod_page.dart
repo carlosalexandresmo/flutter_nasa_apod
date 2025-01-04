@@ -26,7 +26,7 @@ class ApodPage extends GetView<ApodController> {
             (_) => SingleChildScrollView(
                     child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: ApodPost(apod: controller.apod!),
+                  child: ApodPost(apod: controller.apod!, onPressed: () async => await controller.managerFavorite(),),
                 )),
             onEmpty: Container(), onError: (error) {
           return Text(error ?? '');
@@ -42,7 +42,9 @@ class ApodPage extends GetView<ApodController> {
             firstDate: DateTime(2000),
             lastDate: DateTime.now(),
           );
-          controller.getApod(date: date);
+          if (date != null) {
+            controller.getApod(date: date);
+          }
         },
         child: const Icon(
           Icons.calendar_today,
