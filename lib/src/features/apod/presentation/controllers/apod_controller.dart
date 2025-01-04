@@ -13,9 +13,9 @@ class ApodController extends GetxController with StateMixin {
   Apod? get apod => _apod.value;
   set apod(Apod? value) => _apod.value = value;
 
-  // final _favorite = false.obs;
-  // bool get favorite => _favorite.value;
-  // set favorite(bool value) => _favorite.value = value;
+  final _favorite = false.obs;
+  bool get favorite => _favorite.value;
+  set favorite(bool value) => _favorite.value = value;
 
   @override
   void onInit() {
@@ -29,7 +29,7 @@ class ApodController extends GetxController with StateMixin {
   }
 
   Future<void> managerFavorite() async {
-    _repository.saveFavorite(apod!);
+    await _repository.saveFavorite(apod!);
   }
 
   Future<void> getApod({DateTime? date}) async {

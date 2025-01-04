@@ -39,7 +39,7 @@ class ApodRepositoryImpl implements ApodRepository {
   Future<Either<Exception, bool>> isFavorite(Apod apod) async {
     try {
       await favoriteDataSource.checkIfIsFavorite(apod);
-      return const Right(false);
+      return Right(apod.isFavorite!);
     } catch (e) {
       return Left(Exception(e.toString()));
     }
